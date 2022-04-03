@@ -13,7 +13,20 @@
 				</div>
 			</a>
 		</li>
+		<div>
+			<button class="btn btn-danger"  id="delete-venue" data-id="{{ venue.id }}" onclick="deleteVenue(event);">Delete</button>
+		</div>
 		{% endfor %}
 	</ul>
 {% endfor %}
+<script>
+	function deleteVenue(event) {
+		const venue_id = event.target.dataset.id;
+		fetch('/venues/'+ venue_id + '/delete',{
+			method: 'DELETE'
+		}).catch(function(e) {
+			console.error(e);
+		});
+	}
+</script>
 {% endblock %}
